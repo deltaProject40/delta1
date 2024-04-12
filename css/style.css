@@ -55,6 +55,7 @@ ul {
     letter-spacing: -3px;
     margin: 0;
 }
+
 .special-heading + p {
     margin: -30px 0 0;
     font-size: 20px;
@@ -662,6 +663,7 @@ ul {
     color: #777;
 }
 /* End Team */
+
 /* start up */
 .up {
     position: fixed;
@@ -852,3 +854,4 @@ ul {
     background-color: #777;
     color: #10cab7;
 }
+/*--------------------------------------------------------------
