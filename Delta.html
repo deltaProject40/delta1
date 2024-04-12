@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="css/Normalize.css">
     <!-- Font Awesome library -->
     <link rel="stylesheet" href="css/all.min.css">
+    
+  <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
     <!-- Google Fonts  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -395,6 +402,72 @@
             </div>
           </div>
           <!-- END  creeks-->
+           <!-- ======= Contact Section ======= -->
+    <section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route"
+    >
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="contact-mf">
+            <div id="contact" class="box-shadow-full">
+              <div class="row">
+                <div class="col-md-8 mx-auto">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      Send Message Us
+                    </h5>
+                  </div>
+                  <div>
+                    <form action="https://formspree.io/f/xnqeogdw" method="POST" id="my-form">
+                      <div class="row">
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="phoneNo" id="phoneNo"
+                              placeholder="Phone Number">
+                          </div>
+                        </div>
+                        <div class="col-md-12 " style="margin-top: 10pt;">
+                          <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                              required></textarea>
+                          </div>
+                        </div>
+                        <div class="col-md-12 text-center my-3" id="my-form-status">
+                        </div>
+                        <div class="col-md-12 text-center">
+                          <button type="submit" class="btn btn-primary button button-a button-big button-rouded">Send Message</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Contact Section -->
+  <br>
           <!-- start UP -->
           <span class="up">
             <i class="fa-solid fa-house"></i>
@@ -472,5 +545,63 @@
         </div>
         <!-- End Footer -->
         <script src="js/main.js"></script>
+        <style>
+          .alert {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+          }
+        
+          .success {
+            background-color: #4CAF50;
+            color: white;
+          }
+        
+          .error {
+            background-color: #f44336;
+            color: white;
+          }
+        </style>
+        
+        <script>
+          var form = document.getElementById("my-form");
+          var alertMessage = document.createElement("div");
+          alertMessage.className = "alert";
+          alertMessage.style.display = "none"; // Initially hide the alert message
+          form.parentNode.insertBefore(alertMessage, form.nextSibling); // Insert alert message after the form
+        
+          async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+              method: form.method,
+              body: data,
+              headers: {
+                'Accept': 'application/json'
+              }
+            }).then(response => {
+              if (response.ok) {
+                alertMessage.style.display = "block";
+                alertMessage.textContent = "Thanks for your submission!";
+                alertMessage.classList.add("success");
+                form.reset();
+              } else {
+                response.json().then(data => {
+                  alertMessage.style.display = "block";
+                  alertMessage.textContent = "Oops! There was a problem submitting your form";
+                  alertMessage.classList.add("error");
+                });
+              }
+            }).catch(error => {
+              alertMessage.style.display = "block";
+              alertMessage.textContent = "Oops! There was a problem submitting your form";
+              alertMessage.classList.add("error");
+            });
+          }
+        
+          form.addEventListener("submit", handleSubmit);
+        </script>
+        
 </body>
 </html>
